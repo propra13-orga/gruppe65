@@ -1,6 +1,6 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.Graphics
+import java.awt.Graphics;
 import java.awt.Color;
 
 
@@ -12,7 +12,7 @@ public class Movement {
 int movement=5;
 int playerx;
 int playery;
-int rightborder=600:
+int rightborder=600;
 int leftborder=600;
 int upborder=600;
 int downborder=600;
