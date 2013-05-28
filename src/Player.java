@@ -1,0 +1,315 @@
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+
+
+
+public class Player {
+int playerx;
+int playery;
+private boolean alive = true;
+int levelCounter=1; //lvlcounter für übergang
+boolean playerstate = true;
+public Rectangle playerBox;
+int lx;
+int ly;
+int stop=0;
+
+
+ArrayList<Rectangle>lv1 = new ArrayList<Rectangle>();
+ArrayList<Rectangle>lv2 = new ArrayList<Rectangle>();
+ArrayList<Rectangle>lv3 = new ArrayList<Rectangle>();
+
+public void lv1walls() {
+
+lv1.add(new Rectangle(100, 0, 500, 100));
+lv1.add(new Rectangle(0, 200, 250, 50));
+lv1.add(new Rectangle(400, 100, 200, 400));
+lv1.add(new Rectangle(150, 350, 250, 50));
+lv1.add(new Rectangle(0, 470, 250, 150));
+}
+
+public void lv2walls() {
+lv2.add(new Rectangle (320, 70, 100, 100));
+lv2.add(new Rectangle (150, 0, 100, 300));
+lv2.add(new Rectangle (0, 0, 170, 300));
+lv2.add(new Rectangle (500, 100, 100, 300));
+lv2.add(new Rectangle (300, 330, 100, 300));
+}
+
+public void lv3walls() {
+lv3.add(new Rectangle (70, 50, 80, 550));
+lv3.add(new Rectangle (200, 300, 200, 400));
+lv3.add(new Rectangle (200, 200, 400, 60));
+lv3.add(new Rectangle (200, 40, 500, 100));
+
+}
+
+
+public boolean getAlive(){
+	return alive;
+}
+
+public void setAlive(boolean b){
+	alive = b;
+}
+
+
+public Player(int x, int y, int size) {
+	playerx=x;
+	playery=y;
+	playerBox=new Rectangle(x, y, size, size);
+	
+}
+
+public int getLevelCounter() { //lvlcounter für übergang
+	return levelCounter;
+}
+
+public Rectangle getPlayer() {
+	return playerBox;
+}
+
+public boolean collcheckR(){
+	 if (levelCounter==1) {
+		 for (Rectangle r :lv1) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 if (levelCounter==2) {
+		 for (Rectangle r :lv2) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 
+	 if (levelCounter==3) {
+		 for (Rectangle r :lv3) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 return false;
+	 }
+
+public boolean collcheckL(){
+	 if (levelCounter==1) {
+		 for (Rectangle r :lv1) {
+			 if (playerBox.x>r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 if (levelCounter==2) {
+		 for (Rectangle r :lv2) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 
+	 if (levelCounter==3) {
+		 for (Rectangle r :lv3) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 return false;
+	 }
+
+public boolean collcheckU(){
+	 if (levelCounter==1) {
+		 for (Rectangle r :lv1) {
+			 if (playerBox.y>r.y){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 if (levelCounter==2) {
+		 for (Rectangle r :lv2) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 if (levelCounter==3) {
+		 for (Rectangle r :lv3) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 return false;
+	 }
+
+public boolean collcheckD(){
+	 if (levelCounter==1) {
+		 for (Rectangle r :lv1) {
+			 if (playerBox.y<r.y){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 if (levelCounter==2) {
+		 for (Rectangle r :lv2) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 if (levelCounter==3) {
+		 for (Rectangle r :lv3) {
+			 if (playerBox.x<r.x){
+			 if(playerBox.intersects(r)) {
+				 return true;
+				 	}
+			 	}
+		 	}
+	 }
+	 return false;
+	 }
+
+public void update(boolean up, boolean down, boolean right, boolean left) {
+	
+	lx=playerx;
+	ly=playery; 
+
+ if (up==true && collcheckU()==false) {
+	 playery=playery-5;
+ }
+ 
+ if (down==true && collcheckD()==false) {
+	 playery=playery+5;
+ }
+ 
+ if (right==true && collcheckR()==false) {
+	 playerx=playerx+5;
+ }
+ 
+ if (left==true && collcheckL()==false) {
+	 playerx=playerx-5;
+ }
+ 
+ if (playery<0) {
+	 playery=0;
+ }
+ 
+ if (playery>558) {
+	 playery=558;
+ }
+ 
+ if (playerx<0) {
+	 playerx=0;
+ }
+ 
+ if (playerx>584) {
+	 playerx=584;
+ }
+ 
+ 
+ 
+ 
+
+	 
+		
+ /*
+ if(playerBox.intersects(150, 350, 250, 50)) {
+	 if (down==true) {
+		 playery=playery-5;
+	 }
+	 
+ }
+ 
+ */
+ 
+ 
+ playerBox.x = playerx;
+ playerBox.y = playery;
+ if(playerBox.intersects(300,300,20,20) && levelCounter==1){
+	 setAlive(false);
+ }
+ if (playerBox.intersects(485,470,40,40) && levelCounter==2) {
+	 setAlive(false);
+ }
+ 
+ if (playerBox.intersects(170,400,40,40) && levelCounter==2) {
+	 setAlive(false);
+ }
+ 
+ if (playerBox.intersects(155,155,10,10) && levelCounter==3) {
+	 setAlive(false);
+ }
+ 
+ if (playerBox.intersects(170,220,25,10) && levelCounter==3) {
+	 setAlive(false);
+ }
+
+ 
+ if(playerBox.intersects(530, 510, 40, 40) && levelCounter==1) {
+	 levelCounter=2;
+ }
+ 
+ if(playerBox.intersects(0, 450, 40, 40) && levelCounter==2) {
+	 levelCounter=3;
+ }
+ if(playerBox.intersects(540, 520, 40, 40) && levelCounter==3 && stop==0) {
+	 stop=stop+1;
+	 Gewinnerf.main(null);
+	 
+ }
+
+	 
+ }
+	
+
+
+public Rectangle getPlayerBox() {
+	return playerBox;
+}
+
+public void setX(int a) {
+	playerx=a;
+}
+
+public void setY(int b) {
+	playery=b;
+}
+
+
+}
+
+
+
+
+
+
+
+
