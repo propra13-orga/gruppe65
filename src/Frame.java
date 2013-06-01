@@ -2,20 +2,24 @@
 
 import javax.swing.*;
 
-import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 
 
 
 public class Frame extends JFrame implements ActionListener  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton schliessen;
 	private JButton einstellung;
 	private JButton info;
 	private JButton ende;
-	static Game g = new Game();
+    
 	
 	
 	public static void main(String[] args) {
@@ -23,6 +27,7 @@ public class Frame extends JFrame implements ActionListener  {
 		Frame frame = new Frame("Menü");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400,400);
+		//frame.setBackground(new java.awt.Color(23,233,33));
 		
 		
 		frame.setLayout(null);
@@ -59,16 +64,40 @@ public class Frame extends JFrame implements ActionListener  {
 	}
 	
 	
-	public static void fenster() {
-	    
-		JFrame fenster = new JFrame();
+    public static void game() {
+    	
+	    Player player = new Player(20,20,20);
+		Level fenster = new Level(player);
 		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenster.setSize(630,630);
+		fenster.setSize(600,600);
 		fenster.setVisible(true);
-		//fenster.add(new level();)
+		fenster.setResizable(false);
+		
+		/**boolean alive = true;
+		
+		while (alive) {
+			alive = player.getAlive();
+			//player.update(fenster.getUp(),fenster.getDown(), fenster.getRight(), fenster.getLeft());**/
+			fenster.repaintScreen();
+			
+		
+			
+			
+			
+			/**try {
+				Thread.sleep(30);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}}
+		Verloren.main(null);**/
 		
 		
-		}
+		//fenster.getContentPane();
+		//fenster.add(new Label());
+		
+}
+		
+	
 			
 				
 		
@@ -83,7 +112,8 @@ public class Frame extends JFrame implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource()== schliessen){
-			fenster();
+			game();
+	
 		}
 		
 		if (e.getSource()== info){
@@ -96,14 +126,14 @@ public class Frame extends JFrame implements ActionListener  {
 		
 		if (e.getSource()== einstellung ){
 		
-		 auswahl();
+		 //auswahl();//auswahl kommt im im zweiten Meilenstein, aufjedenfall später sonst wird die Zeit knapp
 			
 		}
 		
 		if(e.getSource()== ende){
 			System.exit(0);
 		}
-		
-	}
+		}	
+	
 
 }

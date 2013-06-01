@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 
 public class Gewinnerf extends JFrame implements ActionListener  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton neustart;
 	private JButton ende;
 	
@@ -40,17 +44,23 @@ public class Gewinnerf extends JFrame implements ActionListener  {
 		add(ende);
 
 }
-      public static void fenster() {
+      public static void game() {
 	    
-		//JFrame fenster = new JFrame(level);
-      }
+    	  Player player = new Player(20,20,20);
+  		Level fenster = new Level(player);
+  		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  		fenster.setSize(600,600);
+  		fenster.setVisible(true);
+  		fenster.setResizable(false);
+  		
+  }
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource()== neustart){
-			fenster();
+			game();
 		}
 		if(e.getSource()== ende){
 			System.exit(0);

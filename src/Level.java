@@ -2,17 +2,19 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.Rectangle;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 
 public class Level extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Label label;
 	Player spieler;
 	
@@ -20,6 +22,7 @@ public class Level extends JFrame {
 	private boolean key_right = false;
 	private boolean key_down = false;
 	private boolean key_left = false;
+	
 	
 	
 	public Level(Player spieler){
@@ -54,9 +57,15 @@ public class Level extends JFrame {
 	}
 	
 	
+	
 
-	private class Label extends JLabel{
-		@Override
+	private class Label extends JPanel{
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		protected void paintComponent(Graphics g) {
 			
 			

@@ -12,6 +12,10 @@ import javax.swing.JFrame;
 
 public class Verloren extends JFrame implements ActionListener  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton neustart;
 	private JButton ende;
 	
@@ -32,28 +36,34 @@ public class Verloren extends JFrame implements ActionListener  {
 		super(title);
 		
 		neustart= new JButton("Neuer Versuch");
-		neustart.setBounds(220,40,160,40);
+		neustart.setBounds(220,170,160,40);
 		neustart.addActionListener(this);
 		add(neustart);
 		
 		
 		ende= new JButton("Aufhoeren");
-		ende.setBounds(220,120,160,40);
+		ende.setBounds(220,250,160,40);
 		ende.addActionListener(this);
 		add(ende);
 
 }
-      public static void fenster() {
+      public static void game() {
 	    
-		Game fenster = new Game();
-      }
+    	  Player player = new Player(20,20,20);
+  		Level fenster = new Level(player);
+  		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  		fenster.setSize(600,600);
+  		fenster.setVisible(true);
+  		fenster.setResizable(false);
+  		
+  }
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource()== neustart){
-			fenster();
+			game();
 		}
 		if(e.getSource()== ende){
 			System.exit(0);
