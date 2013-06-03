@@ -18,53 +18,38 @@ public class Level extends JFrame {
 	Label label;
 	Player spieler;
 	
-	private boolean key_up = false;
-	private boolean key_right = false;
-	private boolean key_down = false;
-	private boolean key_left = false;
-	
 	
 	
 	public Level(Player spieler){
 		
 		label = new Label();
 		label.setBounds(0, 0, 600, 600);
+		Thread th = new Thread(label);
+		th.start();
 		add(label);
-		addKeyListener(new KeyHandler());
+		addKeyListener(label);
 		this.spieler=spieler;
 		spieler.lv2walls();
 		
-	}
-	
-	public boolean getUp() {
-		return key_up;
-	}
-	
-	public boolean getDown() {
-		return key_down;
-	}
-	
-	public boolean getRight() {
-		return key_right;
-	}
-	
-	public boolean getLeft() {
-		return key_left;
-	}
-	
-	public void repaintScreen(){
-		label.repaint();
-	}
+		
+			
+		}
+		
 	
 	
 	
-
-	private class Label extends JPanel{
+public boolean hoch, runter, links, rechts;
+	public class Label extends JPanel implements Runnable, KeyListener{
 		
 		/**
 		 * 
 		 */
-		private static final long serialVersionUID = 1L;
+		public static final long serialVersionUID = 1L;
+		
+		Player p = new Player(20, 20, 10);
+		
+		
+		//Gegner ge = new Gegner(20,20,10);/**Bsp.:später für bewegliche Gegner**/
 
 		protected void paintComponent(Graphics g) {
 			
@@ -78,8 +63,9 @@ public class Level extends JFrame {
 			g.fillRect(400, 100, 200, 400);
 			g.fillRect(150, 350, 250, 50);
 			g.fillRect(0, 470, 250, 150);
-			g.setColor(Color.PINK);
-			g.fillRect(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
+			g.drawImage(p.img, spieler.getPlayerBox().x, spieler.getPlayerBox().y, /**spieler.getPlayerBox().width, spieler.getPlayerBox().height**/null);
+			//g.setColor(Color.PINK);
+			//g.fillOval(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
 			g.setColor(Color.RED);
 			g.fillRect(300, 300, 20, 20);
 			g.setColor(Color.GREEN);
@@ -96,8 +82,9 @@ public class Level extends JFrame {
                 g.setColor(Color.RED);
                 g.fillRect(170, 400, 40, 40);
                 g.fillRect(485, 470, 40, 40);
-                g.setColor(Color.PINK);
-                g.fillRect(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
+                g.drawImage(p.img, spieler.getPlayerBox().x, spieler.getPlayerBox().y, /**spieler.getPlayerBox().width, spieler.getPlayerBox().height**/null);
+                //g.setColor(Color.PINK);
+                //g.fillRect(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
     			g.setColor(Color.GREEN);
     			g.fillRect(0, 450, 40, 40);
 			
@@ -113,52 +100,73 @@ public class Level extends JFrame {
                 g.setColor(Color.RED);
                 g.fillRect(155, 155, 10, 10);
                 g.fillRect(170, 220, 25, 10);
-                g.setColor(Color.PINK);
-                g.fillRect(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
+                g.drawImage(p.img, spieler.getPlayerBox().x, spieler.getPlayerBox().y, /**spieler.getPlayerBox().width, spieler.getPlayerBox().height**/null);
+                //g.setColor(Color.PINK);
+                //g.fillRect(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
     			g.setColor(Color.GREEN);
     			g.fillRect(540, 520, 40, 40);
 			}
 	}
-	}
-	
-	private class KeyHandler implements KeyListener {
+		
+
+		@Override
+		public void run() {
 			
+			while(true){
+				if (links == true){
+					spieler.getPlayerBox().x--;
+				}
+				if (rechts == true){
+					spieler.getPlayerBox().x++;
+				}
+				if (hoch == true){
+					spieler.getPlayerBox().y--;
+				}
+				if (runter == true){
+					spieler.getPlayerBox().y++;
+				}
+				repaint();
+				try{
+					Thread.sleep(10);}
+				 catch (InterruptedException e){
+					 e.printStackTrace();
+				 }
+				
+
+				}
+			}
+			
+
 		@Override
 		public void keyPressed(KeyEvent e) {
-			if (e.getKeyCode()==KeyEvent.VK_UP) {
-				key_up=true;
+			if(e.getKeyCode() == 37){
+				links = true;
 			}
-			
-			if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-				key_down=true;
+			if(e.getKeyCode() == 38){
+				hoch = true;
 			}
-			
-			if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-				key_left=true;
+			if(e.getKeyCode() == 39){
+				rechts = true;
 			}
-			
-			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-				key_right=true;
+			if(e.getKeyCode() == 40){
+				runter = true;
 			}
 			
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			if (e.getKeyCode()==KeyEvent.VK_UP) {
-				key_up=false;
+			if(e.getKeyCode() == 37){
+				links = false;
 			}
-			
-			if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-				key_down=false;
+			if(e.getKeyCode() == 38){
+				hoch = false;
 			}
-			
-			if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-				key_left=false;
+			if(e.getKeyCode() == 39){
+				rechts = false;
 			}
-			
-			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-				key_right=false;
+			if(e.getKeyCode() == 40){
+				runter = false;
 			}
 			
 		}
@@ -168,8 +176,6 @@ public class Level extends JFrame {
 			
 			
 		}
-
-		
 	}
 	
 }

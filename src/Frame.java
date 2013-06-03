@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 public class Frame extends JFrame implements ActionListener  {
 
 	/**
-	 * 
+	 * Einfügen der Buttons
 	 */
 	private static final long serialVersionUID = 1L;
 	private JButton schliessen;
@@ -21,7 +21,10 @@ public class Frame extends JFrame implements ActionListener  {
 	private JButton ende;
     
 	
-	
+	/**
+	 * 
+	 * Erstellung des Frames für das Menue
+	 */
 	public static void main(String[] args) {
 		
 		Frame frame = new Frame("Menü");
@@ -29,12 +32,16 @@ public class Frame extends JFrame implements ActionListener  {
 		frame.setSize(400,400);
 		//frame.setBackground(new java.awt.Color(23,233,33));
 		
-		
 		frame.setLayout(null);
 		frame.setVisible(true);
+		frame.setResizable(false);
 
 	}
-	
+	/**
+	 * 
+	 * Buttons werden gesetzt und beschriftet + ActionListener wird hinzugefügt,
+	 * damit auch etwas passiert, wenn auf den Button geklickt wird.
+	 */
 	public Frame(String title) {
 		super(title);
 		
@@ -63,51 +70,38 @@ public class Frame extends JFrame implements ActionListener  {
 			
 	}
 	
-	
-    public static void game() {
+	/**
+	 * Hier wird das Fenster geöffnet in dem das Spiel stattfindet 
+	 */
+    public static void game()  {
     	
-	    Player player = new Player(20,20,20);
+    	
+	    Player player = new Player(20,20,10);
 		Level fenster = new Level(player);
 		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenster.setSize(600,600);
 		fenster.setVisible(true);
 		fenster.setResizable(false);
-		
-		/**boolean alive = true;
-		
-		while (alive) {
-			alive = player.getAlive();
-			//player.update(fenster.getUp(),fenster.getDown(), fenster.getRight(), fenster.getLeft());**/
-			fenster.repaintScreen();
-			
-		
-			
-			
-			
-			/**try {
-				Thread.sleep(30);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}}
-		Verloren.main(null);**/
-		
-		
-		//fenster.getContentPane();
-		//fenster.add(new Label());
-		
-}
+		//player.getAlive();
+		//fenster.repaint();
+		}
 		
 	
 			
 				
 		
 	
-		
+		/**
+		 * hier steht nachher das Auswahlmenue der Einstellungen
+		 */
 		public static void auswahl(){
 			
 		}
 	
-
+/**
+ * gehört zum ActionListener; 
+ * hier steht was geschehen soll, wenn auf den Button geklickt wird  
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -126,7 +120,7 @@ public class Frame extends JFrame implements ActionListener  {
 		
 		if (e.getSource()== einstellung ){
 		
-		 //auswahl();//auswahl kommt im im zweiten Meilenstein, aufjedenfall später sonst wird die Zeit knapp
+		 //auswahl(); 
 			
 		}
 		

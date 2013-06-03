@@ -49,7 +49,7 @@ public class Verloren extends JFrame implements ActionListener  {
 }
       public static void game() {
 	    
-    	  Player player = new Player(20,20,20);
+    	  Player player = new Player(20,20,10);
   		Level fenster = new Level(player);
   		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   		fenster.setSize(600,600);

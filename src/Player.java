@@ -1,5 +1,8 @@
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 
 
@@ -13,11 +16,15 @@ public Rectangle playerBox;
 int lx;
 int ly;
 int stop=0;
+Image img = new ImageIcon("res/figur.png").getImage();
 
 
 ArrayList<Rectangle>lv1 = new ArrayList<Rectangle>();
 ArrayList<Rectangle>lv2 = new ArrayList<Rectangle>();
 ArrayList<Rectangle>lv3 = new ArrayList<Rectangle>();
+
+
+
 
 public void lv1walls() {
 
@@ -44,20 +51,21 @@ lv3.add(new Rectangle (200, 40, 500, 100));
 
 }
 
-
 public boolean getAlive(){
 	return alive;
 }
 
 public void setAlive(boolean b){
 	alive = b;
-}
+	
+} //Hier muss neu überlegt werden wegen Kollision
 
 
 public Player(int x, int y, int size) {
 	playerx=x;
 	playery=y;
 	playerBox=new Rectangle(x, y, size, size);
+	
 	
 }
 
@@ -100,7 +108,10 @@ public boolean collcheckR(){
 	 }
 	 return false;
 	 }
-
+/**
+ * 
+ * Kollisionsabfrage
+ */
 public boolean collcheckL(){
 	 if (levelCounter==1) {
 		 for (Rectangle r :lv1) {
@@ -194,26 +205,30 @@ public boolean collcheckD(){
 	 }
 	 return false;
 	 }
-
+/**
+ * 
+ * Was zu tun ist für den Fall, dass an eine Wand gestoßen wurde : Player update
+ * 
+ */
 public void update(boolean up, boolean down, boolean right, boolean left) {
 	
 	lx=playerx;
 	ly=playery; 
 
  if (up==true && collcheckU()==false) {
-	 playery=playery-5;
+	 playery=playery-10;
  }
  
  if (down==true && collcheckD()==false) {
-	 playery=playery+5;
+	 playery=playery+10;
  }
  
  if (right==true && collcheckR()==false) {
-	 playerx=playerx+5;
+	 playerx=playerx+10;
  }
  
  if (left==true && collcheckL()==false) {
-	 playerx=playerx-5;
+	 playerx=playerx-10;
  }
  
  if (playery<0) {
