@@ -115,16 +115,30 @@ public boolean hoch, runter, links, rechts;
 			while(true){
 				if (links == true){
 					spieler.getPlayerBox().x--;
+					if (spieler.getPlayerBox().x < 0){
+						spieler.getPlayerBox().x++;
+					}
 				}
 				if (rechts == true){
 					spieler.getPlayerBox().x++;
+					if (spieler.getPlayerBox().x > 550){
+						spieler.getPlayerBox().x--;
+					}
 				}
 				if (hoch == true){
 					spieler.getPlayerBox().y--;
+					if (spieler.getPlayerBox().y < 0){
+						spieler.getPlayerBox().y++;
+					}
 				}
 				if (runter == true){
 					spieler.getPlayerBox().y++;
+					if (spieler.getPlayerBox().y > 518){
+						spieler.getPlayerBox().y--;
+					}
 				}
+				
+				
 				repaint();
 				try{
 					Thread.sleep(10);}
