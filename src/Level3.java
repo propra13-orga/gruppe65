@@ -1,6 +1,3 @@
-
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +7,7 @@ import javax.swing.JFrame;
 
 
 
-public class Verloren extends JFrame implements ActionListener  {
+public class Level3 extends JFrame implements ActionListener  {
 
 	/**
 	 * 
@@ -20,11 +17,11 @@ public class Verloren extends JFrame implements ActionListener  {
 	private JButton ende;
 	
 	
-	public static void main(Level.Label label) {
+	public static void main() {
 		
-		Verloren frame = new Verloren("Verloren");
+		Level3 frame = new Level3("Next Level");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600,600);
+		frame.setSize(400,400);
 		
 		
 		frame.setLayout(null);
@@ -32,27 +29,27 @@ public class Verloren extends JFrame implements ActionListener  {
 
 	}
 	
-	public Verloren(String title) {
+	public Level3(String title) {
 		super(title);
 		
-		neustart= new JButton("Neuer Versuch");
-		neustart.setBounds(220,170,160,40);
+		neustart= new JButton("Finaler Raum");
+		neustart.setBounds(120,40,160,40);
 		neustart.addActionListener(this);
 		add(neustart);
 		
 		
 		ende= new JButton("Aufhoeren");
-		ende.setBounds(220,250,160,40);
+		ende.setBounds(120,120,160,40);
 		ende.addActionListener(this);
 		add(ende);
 
 }
       public static void game() {
 	    
-    	  Player player = new Player(20,20,10);
-  		Level fenster = new Level(player);
+    	Player player = new Player(540,540,20);
+  		Raum3 fenster = new Raum3(player);
   		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-  		fenster.setSize(400,400);
+  		fenster.setSize(600,600);
   		fenster.setVisible(true);
   		fenster.setResizable(false);
   		

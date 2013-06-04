@@ -79,7 +79,7 @@ public class Frame extends JFrame implements ActionListener  {
 	    Player player = new Player(20,20,10);
 		Level fenster = new Level(player);
 		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenster.setSize(600,600);
+		fenster.setSize(400,400);
 		fenster.setVisible(true);
 		fenster.setResizable(false);
 		//player.update();
