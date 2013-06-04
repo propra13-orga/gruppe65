@@ -17,7 +17,7 @@ public class Gewinnerf extends JFrame implements ActionListener  {
 	private JButton ende;
 	
 	
-	public static void main(String[] args) {
+	public static void main(Level.Label label) {
 		
 		Gewinnerf frame = new Gewinnerf("Gewonnen");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

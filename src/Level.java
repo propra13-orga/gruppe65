@@ -17,7 +17,7 @@ public class Level extends JFrame {
 	private static final long serialVersionUID = 1L;
 	Label label;
 	Player spieler;
-	
+	//boolean quit = false;
 	
 	
 	public Level(Player spieler){
@@ -46,7 +46,7 @@ public boolean hoch, runter, links, rechts;
 		 */
 		public static final long serialVersionUID = 1L;
 		
-		Player p = new Player(20, 20, 10);
+		Player p = new Player(20, 20, 25);
 		
 		
 		//Gegner ge = new Gegner(20,20,10);/**Bsp.:später für bewegliche Gegner**/
@@ -71,6 +71,7 @@ public boolean hoch, runter, links, rechts;
 			g.setColor(Color.GREEN);
 			g.fillRect(530, 510, 40, 40);
 			}
+			
 			if (spieler.getLevelCounter()==2) {
 				
 				g.setColor(Color.BLACK);
@@ -106,7 +107,17 @@ public boolean hoch, runter, links, rechts;
     			g.setColor(Color.GREEN);
     			g.fillRect(540, 520, 40, 40);
 			}
-	}
+			
+			/**if (quit==true){
+				g.drawString("Weiter spielen (R)", 250, 100);
+				g.drawString("Hauptmenue (M)", 250, 100);
+				g.drawString("Beenden (Q)", 250, 100);
+				if (quit==false){
+					//?//g.clear();
+					
+				}**/
+	
+			}
 		
 
 		@Override
@@ -115,14 +126,18 @@ public boolean hoch, runter, links, rechts;
 			while(true){
 				if (links == true){
 					spieler.getPlayerBox().x--;
-					if (spieler.getPlayerBox().x < 0){
+					if (spieler.getPlayerBox().x< 0){
 						spieler.getPlayerBox().x++;
 					}
+						
 				}
 				if (rechts == true){
 					spieler.getPlayerBox().x++;
 					if (spieler.getPlayerBox().x > 550){
 						spieler.getPlayerBox().x--;
+						/*if (spieler.getPlayerBox().x > 199 && spieler.getPlayerBox().x<= 600 && spieler.getPlayerBox().y>= 99 && spieler.getPlayerBox().y<= 100 ){
+							spieler.getPlayerBox().x--;*/
+						
 					}
 				}
 				if (hoch == true){
@@ -136,8 +151,42 @@ public boolean hoch, runter, links, rechts;
 					if (spieler.getPlayerBox().y > 518){
 						spieler.getPlayerBox().y--;
 					}
+					
+				if (spieler.getPlayerBox().x >= 280 && spieler.getPlayerBox().x<= 320 && spieler.getPlayerBox().y>= 280 && spieler.getPlayerBox().y<= 320 ){
+					//System.exit(0);
+					Verloren.main(null);
+					break;
 				}
+				if (spieler.getPlayerBox().x >= 490 && spieler.getPlayerBox().x<= 560 && spieler.getPlayerBox().y>= 460 && spieler.getPlayerBox().y<= 520 ){
+					//System.exit(0);
+					Gewinnerf.main(null);
+					break;
+				}
+				if (spieler.getPlayerBox().x > 400  && spieler.getPlayerBox().x< 600  && spieler.getPlayerBox().y> 0 && spieler.getPlayerBox().y< 100 ){
+					spieler.getPlayerBox().x--;
+					spieler.getPlayerBox().y++;
+				}
+					
 				
+					
+				//Kollision
+					/**if(spieler.intersects(spieler.lv1walls())){
+						Verloren.main(null);
+					}**/
+					
+					//escape
+				      /**if(e.isrunter(e.KEY_ESCAPE)){
+				    	  quit = true;
+				      } //später, wenn man auf Escape klickt, kommt ein Auswahlmenü
+				
+				       if(input.isrunter(Input.KEY_R)){
+				          quit= false;
+				       if(input.isrunter(Input.KEY_M)){
+				          
+				       if(input.isrunter(Input.KEY_Q)){
+				          System.exit(0);
+				**/ //Was im Auswahlmenue passieren soll
+				}
 				
 				repaint();
 				try{
@@ -147,8 +196,11 @@ public boolean hoch, runter, links, rechts;
 				 }
 				
 
-				}
-			}
+				}}
+		
+				
+			
+
 			
 
 		@Override

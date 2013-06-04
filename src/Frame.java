@@ -82,7 +82,7 @@ public class Frame extends JFrame implements ActionListener  {
 		fenster.setSize(600,600);
 		fenster.setVisible(true);
 		fenster.setResizable(false);
-		//player.getAlive();
+		//player.update();
 		//fenster.repaint();
 		}
 		

@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 public class Player {
 int playerx;
 int playery;
-private boolean alive = true;
 int levelCounter=1; //lvlcounter für übergang
 boolean playerstate = true;
 public Rectangle playerBox;
@@ -51,22 +50,22 @@ lv3.add(new Rectangle (200, 40, 500, 100));
 
 }
 
-public boolean getAlive(){
+/*public boolean getAlive(){
 	return alive;
 }
 
 public void setAlive(boolean b){
-	alive = b;
-	
-} //Hier muss neu überlegt werden wegen Kollision
+	alive = b;}*/
+
+//Hier muss neu überlegt werden wegen Kollision
 
 
 public Player(int x, int y, int size) {
 	playerx=x;
 	playery=y;
-	playerBox=new Rectangle(x, y, size, size);
-	
-	
+	playerBox=new Rectangle(/*x, y, size, size*/);
+
+
 }
 
 public int getLevelCounter() { //lvlcounter für übergang
@@ -96,7 +95,7 @@ public boolean collcheckR(){
 			 	}
 		 	}
 	 }
-	 
+
 	 if (levelCounter==3) {
 		 for (Rectangle r :lv3) {
 			 if (playerBox.x<r.x){
@@ -131,7 +130,7 @@ public boolean collcheckL(){
 			 	}
 		 	}
 	 }
-	 
+
 	 if (levelCounter==3) {
 		 for (Rectangle r :lv3) {
 			 if (playerBox.x<r.x){
@@ -210,8 +209,8 @@ public boolean collcheckD(){
  * Was zu tun ist für den Fall, dass an eine Wand gestoßen wurde : Player update
  * 
  */
-public void update(boolean up, boolean down, boolean right, boolean left) {
-	
+public void update( boolean up, boolean down, boolean left, boolean right) {
+
 	lx=playerx;
 	ly=playery; 
 
@@ -251,8 +250,8 @@ public void update(boolean up, boolean down, boolean right, boolean left) {
  
  
 
-	 
-		
+
+
  /*
  if(playerBox.intersects(150, 350, 250, 50)) {
 	 if (down==true) {
@@ -267,22 +266,27 @@ public void update(boolean up, boolean down, boolean right, boolean left) {
  playerBox.x = playerx;
  playerBox.y = playery;
  if(playerBox.intersects(300,300,20,20) && levelCounter==1){
-	 setAlive(false);
+	 //setAlive(false);
+	 Verloren.main(null);
  }
  if (playerBox.intersects(485,470,40,40) && levelCounter==2) {
-	 setAlive(false);
+	 //setAlive(false);
+	 Verloren.main(null);
  }
  
  if (playerBox.intersects(170,400,40,40) && levelCounter==2) {
-	 setAlive(false);
+	 //setAlive(false);
+	 Verloren.main(null);
  }
  
  if (playerBox.intersects(155,155,10,10) && levelCounter==3) {
-	 setAlive(false);
+	 //setAlive(false);
+	 Verloren.main(null);
  }
  
  if (playerBox.intersects(170,220,25,10) && levelCounter==3) {
-	 setAlive(false);
+	 //setAlive(false);
+	 Verloren.main(null);
  }
 
  
@@ -296,12 +300,12 @@ public void update(boolean up, boolean down, boolean right, boolean left) {
  if(playerBox.intersects(540, 520, 40, 40) && levelCounter==3 && stop==0) {
 	 stop=stop+1;
 	 Gewinnerf.main(null);
-	 
+
  }
 
-	 
+
  }
-	
+
 
 
 public Rectangle getPlayerBox() {
@@ -318,11 +322,3 @@ public void setY(int b) {
 
 
 }
-
-
-
-
-
-
-
-

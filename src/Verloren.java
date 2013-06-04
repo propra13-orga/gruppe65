@@ -20,7 +20,7 @@ public class Verloren extends JFrame implements ActionListener  {
 	private JButton ende;
 	
 	
-	public static void main(String[] args) {
+	public static void main(Level.Label label) {
 		
 		Verloren frame = new Verloren("Verloren");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
