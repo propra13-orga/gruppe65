@@ -21,7 +21,7 @@ public class Gewinnerf extends JFrame implements ActionListener  {
 		
 		Gewinnerf frame = new Gewinnerf("Gewonnen");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400,400);
+		frame.setSize(600,600);
 		
 		
 		frame.setLayout(null);

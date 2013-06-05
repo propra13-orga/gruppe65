@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -25,6 +26,7 @@ public class Raum2 extends JFrame {
 		label.setBounds(0, 0, 600, 600);
 		Thread th = new Thread(label);
 		th.start();
+		Player.update(hoch,runter,links,rechts);
 		add(label);
 		addKeyListener(label);
 		this.spieler=spieler;
@@ -45,7 +47,7 @@ public boolean hoch, runter, links, rechts;
 		 */
 		public static final long serialVersionUID = 1L;
 		
-		Player p = new Player(540, 520, 25);
+		Player p = new Player(540, 20, 25);
 
 		
 		//Gegner ge = new Gegner(20,20,10);/**Bsp.:später für bewegliche Gegner**/
@@ -57,12 +59,16 @@ public boolean hoch, runter, links, rechts;
 			super.paintComponent(g);
 			if (spieler.getLevelCounter()==1) {
 				spieler.lv2walls();
+				
+				Rectangle s = new Rectangle (spieler.getPlayerBox().x, spieler.getPlayerBox().y,25,25);
+				Rectangle w1 = new Rectangle (320,70,100,100);
+				Rectangle w2 = new Rectangle (150, 0,100,300);
+				
+				
 				g.setColor(Color.BLACK);
-                g.fillRect(320, 70, 100, 100);
-                g.fillRect(150, 0, 100, 300);
-                g.fillRect(0, 0, 170,300);
-                g.fillRect(500, 100, 100, 300);
-                g.fillRect(300, 330, 100, 300);
+				g.fillRect(w1.x, w1.y, w1.width, w1.height);
+                g.fillRect(w2.x, w2.y, w2.width, w2.height);
+                
                 g.setColor(Color.RED);
                 g.fillRect(170, 400, 40, 40);
                 g.fillRect(485, 470, 40, 40);
@@ -70,27 +76,29 @@ public boolean hoch, runter, links, rechts;
                 //g.setColor(Color.PINK);
                 //g.fillRect(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
     			g.setColor(Color.GREEN);
-    			g.fillRect(0, 450, 40, 40);
+    			g.fillRect(0, 450, 45, 40);
+    			
+    			if( spieler.getPlayerBox().intersects(w1)){
+					//g.drawString("Kollision",70,50);
+    				spieler.getPlayerBox().x++;
+    				//if(spieler.getPlayerBox().x> 120){
+    					//spieler.getPlayerBox().x++;
+    				//}
+    				spieler.getPlayerBox().y++;
+				}
+    			if( spieler.getPlayerBox().intersects(w2)){
+					//g.drawString("Kollision",200,400);
+    				spieler.getPlayerBox().x++;
+    				//if(spieler.getPlayerBox().x> 120){
+    					//spieler.getPlayerBox().x++;
+    				//}
+    				spieler.getPlayerBox().y++;}
+    			
+    			
+    			repaint();
+    			
 			
 			}
-			
-			
-			/**if (spieler.getLevelCounter()==3){
-				spieler.lv3walls();
-			    g.setColor(Color.BLACK);
-                g.fillRect(70, 50, 80, 550);
-                g.fillRect(200, 300, 200, 400);
-                g.fillRect(200, 200, 400, 60);
-                g.fillRect(200, 40, 500, 100);
-                g.setColor(Color.RED);
-                g.fillRect(155, 155, 10, 10);
-                g.fillRect(170, 220, 25, 10);
-                g.drawImage(p.img, spieler.getPlayerBox().x, spieler.getPlayerBox().y, /**spieler.getPlayerBox().width, spieler.getPlayerBox().height**//**null);**/
-                //g.setColor(Color.PINK);
-                //g.fillRect(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
-    			/**g.setColor(Color.GREEN);
-    			g.fillRect(540, 520, 40, 40);
-			}**/
 			
 			/**if (quit==true){
 				g.drawString("Weiter spielen (R)", 250, 100);
@@ -121,7 +129,11 @@ public boolean hoch, runter, links, rechts;
 						spieler.getPlayerBox().x--;
 						/*if (spieler.getPlayerBox().x > 199 && spieler.getPlayerBox().x<= 600 && spieler.getPlayerBox().y>= 99 && spieler.getPlayerBox().y<= 100 ){
 							spieler.getPlayerBox().x--;*/
-						
+						/**if(spieler.getPlayerBox().x > 318 && spieler.getPlayerBox().y < 80){
+							spieler.getPlayerBox().x--;
+							spieler.getPlayerBox().y++;
+							
+						}**/
 					}
 				}
 				if (hoch == true){
@@ -136,21 +148,28 @@ public boolean hoch, runter, links, rechts;
 						spieler.getPlayerBox().y--;
 					}
 					
-				if (spieler.getPlayerBox().x >= 180 && spieler.getPlayerBox().x<= 220 && spieler.getPlayerBox().y>= 180 && spieler.getPlayerBox().y<= 220 ){
+				if (spieler.getPlayerBox().x >= 130 && spieler.getPlayerBox().x<= 200 && spieler.getPlayerBox().y>= 360 && spieler.getPlayerBox().y<= 440 ){
 					//System.exit(0);
 					Verloren.main(null);
 					break;
 				}
-				if (spieler.getPlayerBox().x >= 252 && spieler.getPlayerBox().x<= 300 && spieler.getPlayerBox().y>= 190 && spieler.getPlayerBox().y<= 280 ){
+				if (spieler.getPlayerBox().x >= 442 && spieler.getPlayerBox().x<=525 && spieler.getPlayerBox().y>= 430 && spieler.getPlayerBox().y<= 510 ){
+					//System.exit(0);
+					Verloren.main(null);
+					break;
+				}
+				
+				if (spieler.getPlayerBox().x >=0 && spieler.getPlayerBox().x<= 40 && spieler.getPlayerBox().y>= 410 && spieler.getPlayerBox().y<= 490 ){
 					//System.exit(0);
 				      Level3.main();
 					break;
 				}
+				
+				
 				/**if (spieler.getPlayerBox().x > 400  && spieler.getPlayerBox().x< 600  && spieler.getPlayerBox().y> 0 && spieler.getPlayerBox().y< 100 ){
 					spieler.getPlayerBox().x--;
 					spieler.getPlayerBox().y++;
 				}**/
-					
 				
 					
 				//Kollision

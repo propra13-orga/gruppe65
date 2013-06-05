@@ -46,7 +46,7 @@ public class Level2 extends JFrame implements ActionListener  {
 }
       public static void game() {
 	    
-    	Player player = new Player(540,540,20);
+    	Player player = new Player(540,40,30);
   		Raum2 fenster = new Raum2(player);
   		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   		fenster.setSize(600,600);

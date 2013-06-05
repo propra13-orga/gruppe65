@@ -26,6 +26,9 @@ public class Level extends JFrame {
 		label.setBounds(0, 0, 600, 600);
 		Thread th = new Thread(label);
 		th.start();
+		
+		Player.update(hoch,runter,links,rechts);
+		
 		add(label);
 		addKeyListener(label);
 		this.spieler=spieler;
@@ -62,7 +65,7 @@ public boolean hoch, runter, links, rechts;
 			//g.setColor(Color.PINK);
 			//g.fillOval(spieler.getPlayerBox().x, spieler.getPlayerBox().y, spieler.getPlayerBox().width, spieler.getPlayerBox().height);
 			g.setColor(Color.RED);
-			g.fillRect(200, 200, 20, 20);
+			g.fillRect(100, 200, 20, 20);
 			g.setColor(Color.GREEN);
 			g.fillRect(290, 215, 30, 30);
 			}
@@ -147,12 +150,12 @@ public boolean hoch, runter, links, rechts;
 						spieler.getPlayerBox().y--;
 					}
 					
-				if (spieler.getPlayerBox().x >= 180 && spieler.getPlayerBox().x<= 220 && spieler.getPlayerBox().y>= 180 && spieler.getPlayerBox().y<= 220 ){
+				if (spieler.getPlayerBox().x >= 80 && spieler.getPlayerBox().x<= 120 && spieler.getPlayerBox().y>= 180 && spieler.getPlayerBox().y<= 220 ){
 					//System.exit(0);
 					Verloren.main(null);
 					break;
 				}
-				if (spieler.getPlayerBox().x >= 252 && spieler.getPlayerBox().x<= 300 && spieler.getPlayerBox().y>= 190 && spieler.getPlayerBox().y<= 280 ){
+				if (spieler.getPlayerBox().x >= 260 && spieler.getPlayerBox().x<= 310 && spieler.getPlayerBox().y>= 190 && spieler.getPlayerBox().y<= 280 ){
 					//System.exit(0);
 					//Raum2.main();
 				      Level2.main();

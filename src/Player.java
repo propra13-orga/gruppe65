@@ -7,20 +7,20 @@ import javax.swing.ImageIcon;
 
 
 public class Player {
-int playerx;
-int playery;
-int levelCounter=1; //lvlcounter für übergang
+static int playerx;
+static int playery;
+static int levelCounter=1; //lvlcounter für übergang
 boolean playerstate = true;
-public Rectangle playerBox;
-int lx;
-int ly;
-int stop=0;
+public static Rectangle playerBox;
+static int lx;
+static int ly;
+static int stop=0;
 Image img = new ImageIcon("res/figur.png").getImage();
 
 
-ArrayList<Rectangle>lv1 = new ArrayList<Rectangle>();
-ArrayList<Rectangle>lv2 = new ArrayList<Rectangle>();
-ArrayList<Rectangle>lv3 = new ArrayList<Rectangle>();
+static ArrayList<Rectangle>lv1 = new ArrayList<Rectangle>();
+static ArrayList<Rectangle>lv2 = new ArrayList<Rectangle>();
+static ArrayList<Rectangle>lv3 = new ArrayList<Rectangle>();
 
 
 
@@ -43,8 +43,8 @@ lv2.add(new Rectangle (300, 330, 100, 300));
 }
 
 public void lv3walls() {
-lv3.add(new Rectangle (70, 50, 80, 550));
-lv3.add(new Rectangle (200, 300, 200, 400));
+lv3.add(new Rectangle (70, 50, 40, 450));
+lv3.add(new Rectangle (200, 400, 200, 300));
 lv3.add(new Rectangle (200, 200, 400, 60));
 lv3.add(new Rectangle (200, 40, 500, 100));
 
@@ -63,7 +63,7 @@ public void setAlive(boolean b){
 public Player(int x, int y, int size) {
 	playerx=x;
 	playery=y;
-	playerBox=new Rectangle(/*x, y, size, size*/);
+	playerBox=new Rectangle(x, y, size, size);
 
 
 }
@@ -76,7 +76,7 @@ public Rectangle getPlayer() {
 	return playerBox;
 }
 
-public boolean collcheckR(){
+public static boolean collcheckR(){
 	 if (levelCounter==1) {
 		 for (Rectangle r :lv1) {
 			 if (playerBox.x<r.x){
@@ -111,7 +111,7 @@ public boolean collcheckR(){
  * 
  * Kollisionsabfrage
  */
-public boolean collcheckL(){
+public static boolean collcheckL(){
 	 if (levelCounter==1) {
 		 for (Rectangle r :lv1) {
 			 if (playerBox.x>r.x){
@@ -143,7 +143,7 @@ public boolean collcheckL(){
 	 return false;
 	 }
 
-public boolean collcheckU(){
+public static boolean collcheckU(){
 	 if (levelCounter==1) {
 		 for (Rectangle r :lv1) {
 			 if (playerBox.y>r.y){
@@ -174,7 +174,7 @@ public boolean collcheckU(){
 	 return false;
 	 }
 
-public boolean collcheckD(){
+public static boolean collcheckD(){
 	 if (levelCounter==1) {
 		 for (Rectangle r :lv1) {
 			 if (playerBox.y<r.y){
@@ -209,27 +209,27 @@ public boolean collcheckD(){
  * Was zu tun ist für den Fall, dass an eine Wand gestoßen wurde : Player update
  * 
  */
-public void update( boolean up, boolean down, boolean left, boolean right) {
+public static void update( boolean hoch, boolean runter, boolean links, boolean rechts) {
 
 	lx=playerx;
 	ly=playery; 
 
- if (up==true && collcheckU()==false) {
+ if (hoch==true && collcheckU()==false) {
 	 playery=playery-10;
  }
  
- if (down==true && collcheckD()==false) {
+ if (runter==true && collcheckD()==false) {
 	 playery=playery+10;
  }
  
- if (right==true && collcheckR()==false) {
+ if (rechts==true && collcheckR()==false) {
 	 playerx=playerx+10;
  }
  
- if (left==true && collcheckL()==false) {
+ if (links==true && collcheckL()==false) {
 	 playerx=playerx-10;
  }
- 
+ /**
  if (playery<0) {
 	 playery=0;
  }
@@ -245,7 +245,7 @@ public void update( boolean up, boolean down, boolean left, boolean right) {
  if (playerx>584) {
 	 playerx=584;
  }
- 
+ **/
  
  
  
